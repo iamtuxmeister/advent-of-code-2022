@@ -16,24 +16,51 @@ while (<FH>) {
     my $roundScore = 0;
     my $input = $_;
     chomp($input);
-    my ($you, $me) = split(/ /, $input);
-    #print("$me, $you\n");
-    my $state = "Loss";
-    if ( ($you eq 'A' && $me eq 'X') || ($you eq 'B' && $me eq 'Y') ||
-        ($you eq 'C' && $me eq 'Z') ) {
-        $roundScore += 3;
-        $state = "Draw";
-    } elsif ( ($you eq 'A' && $me eq 'Y') || ($you eq 'B' && $me eq 'Z') ||
-        ($you eq 'C' && $me eq 'X') ) {
-        $roundScore += 6;
-        $state = "Win";
+    my ($you, $outcome) = split(/ /, $input);
+    switch($outcome) {
+        case "X" {
+            switch($you) {
+                case "A" {
+                    $roundScore += 3;
+                }
+                case "B" {
+                    $roundScore += 1;
+                }
+                case "C" {
+                    $roundScore += 2;
+                }
+            }
+        }
+        case "Y" {
+            switch($you) {
+                case "A" {
+                    $roundScore += 1;
+                }
+                case "B" {
+                    $roundScore += 2;
+                }
+                case "C" {
+                    $roundScore += 3;
+                }
+            }
+            $roundScore += 3;
+        }
+        case "Z" {
+            switch($you) {
+                case "A" {
+                    $roundScore += 2;
+                }
+                case "B" {
+                    $roundScore += 3;
+                }
+                case "C" {
+                    $roundScore += 1;
+                }
+            }
+            $roundScore += 6;
+        }
     }
-    switch($me) {
-        case "X" { $roundScore += 1 }
-        case "Y" { $roundScore += 2 }
-        case "Z" { $roundScore += 3 }
-    }
+    print("Oponent: $you, Outcome: $outcome, Points: $roundScore\n");
     $finalScore += $roundScore;
-    print("You: $you, Me: $me, Outcome: $state, Score: $roundScore\n");
 }
 print("Total Score: $finalScore\n");
