@@ -13,7 +13,7 @@ my $maxElf = 0;
 my $maxCal = 0;
 
 my @elves = ();
-my $elf = 1;
+my $elf = 0;
 while (<FH>) {
     my $input = $_;
     if (!$elves[$elf]) {
@@ -26,12 +26,21 @@ while (<FH>) {
             $maxCal = $elves[$elf];
             $maxElf = $elf;
         }
-        print("$input ");
+        #print("$input ");
     } else {
-        print("\nElf:$elf: Total:$elves[$elf]\n");
+        #print("\nElf:$elf: Total:$elves[$elf]\n");
         $elf++;
         next;
     }
 }
-print("\nElf:$elf: Total:$elves[$elf]\n");
+my @sorted = sort { $b cmp $a } @elves;
+my $ct = 0;
+my $topThree = 0;
+while ($ct < 3) {
+    $topThree += shift(@sorted);
+    $ct++;
+    #print ("$topThree\n");
+}
+$maxElf++;
 print("\nElf with the most Cals:$maxElf, Cal Count: $maxCal\n");
+print("Top Three: $topThree\n");
