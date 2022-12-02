@@ -1,6 +1,6 @@
 # advent-of-code-2022
 Let's go Perl!
 
-Day 1,
+Day 2,
 
-Let's see what we can do
+We rocked day 1, lets keep it up
