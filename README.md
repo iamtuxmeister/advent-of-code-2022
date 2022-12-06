@@ -1,6 +1,6 @@
 # advent-of-code-2022
 Let's go Perl!
 
-Day 2,
+Day 3,
 
-We rocked day 1, lets keep it up
+On the 3rd day of AoC my true love gave to me, another programming problem.
